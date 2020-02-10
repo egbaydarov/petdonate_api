@@ -1,4 +1,4 @@
-package com.example.postgresdemo;
+package hse.projectx.petdonate_api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PostgresDemoApplicationTests {
+public class PetDonateApplicationTests {
 
 	@Test
 	public void contextLoads() {

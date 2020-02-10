@@ -1,4 +1,4 @@
-package com.example.postgresdemo.model;
+package hse.projectx.petdonate_api.model;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -14,8 +14,6 @@ import javax.validation.constraints.*;
 @Data
 public class Pet {
     @Id
-//    @GeneratedValue(generator="system-uuid")
-//    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
 
     @Column(name = "name")

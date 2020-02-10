@@ -1,13 +1,10 @@
-package com.example.postgresdemo.controller;
+package hse.projectx.petdonate_api.controller;
 
 
-import com.example.postgresdemo.exception.ResourceNotFoundException;
-import com.example.postgresdemo.google.GoogleAuthenticator;
-import com.example.postgresdemo.model.Pet;
-import com.example.postgresdemo.repository.PetRepository;
+import hse.projectx.petdonate_api.google.GoogleAuthenticator;
+import hse.projectx.petdonate_api.model.Pet;
+import hse.projectx.petdonate_api.repository.PetRepository;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

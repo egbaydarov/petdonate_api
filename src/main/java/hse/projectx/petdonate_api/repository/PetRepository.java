@@ -1,6 +1,6 @@
-package com.example.postgresdemo.repository;
+package hse.projectx.petdonate_api.repository;
 
-import com.example.postgresdemo.model.Pet;
+import hse.projectx.petdonate_api.model.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

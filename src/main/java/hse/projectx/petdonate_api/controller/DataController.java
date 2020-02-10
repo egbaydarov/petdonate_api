@@ -1,14 +1,14 @@
-package com.example.postgresdemo.controller;
+package hse.projectx.petdonate_api.controller;
 
-import com.example.postgresdemo.exception.ResourceNotFoundException;
-import com.example.postgresdemo.google.GoogleAuthenticator;
-import com.example.postgresdemo.model.DataState;
-import com.example.postgresdemo.model.Pet;
-import com.example.postgresdemo.model.User;
-import com.example.postgresdemo.repository.PetRepository;
-import com.example.postgresdemo.repository.UserRepository;
-import com.example.postgresdemo.transfer.UserDataRequest;
-import com.example.postgresdemo.transfer.UserDataResponse;
+import hse.projectx.petdonate_api.exception.ResourceNotFoundException;
+import hse.projectx.petdonate_api.google.GoogleAuthenticator;
+import hse.projectx.petdonate_api.model.DataState;
+import hse.projectx.petdonate_api.model.Pet;
+import hse.projectx.petdonate_api.model.User;
+import hse.projectx.petdonate_api.repository.PetRepository;
+import hse.projectx.petdonate_api.repository.UserRepository;
+import hse.projectx.petdonate_api.transfer.UserDataRequest;
+import hse.projectx.petdonate_api.transfer.UserDataResponse;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

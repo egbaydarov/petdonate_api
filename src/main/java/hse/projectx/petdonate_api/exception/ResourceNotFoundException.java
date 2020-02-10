@@ -1,4 +1,4 @@
-package com.example.postgresdemo.exception;
+package hse.projectx.petdonate_api.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

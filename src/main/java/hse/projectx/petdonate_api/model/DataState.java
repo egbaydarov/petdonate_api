@@ -1,11 +1,11 @@
-package com.example.postgresdemo.model;
+package hse.projectx.petdonate_api.model;
 
 
 import lombok.Data;
 
 @Data
 public class DataState {
-    public String name = "Egor", ID;
+    public String name = "Name", ID;
     public int cur_HP = 30, cur_Mana = 30, cur_Stamina = 30;
     public String type;
     public int skin;

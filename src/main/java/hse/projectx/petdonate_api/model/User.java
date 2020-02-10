@@ -1,4 +1,4 @@
-package com.example.postgresdemo.model;
+package hse.projectx.petdonate_api.model;
 
 import lombok.Data;
 import lombok.Setter;

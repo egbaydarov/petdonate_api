@@ -1,6 +1,6 @@
-package com.example.postgresdemo.transfer;
+package hse.projectx.petdonate_api.transfer;
 
-import com.example.postgresdemo.model.DataState;
+import hse.projectx.petdonate_api.model.DataState;
 import lombok.Data;
 
 import java.time.LocalDateTime;

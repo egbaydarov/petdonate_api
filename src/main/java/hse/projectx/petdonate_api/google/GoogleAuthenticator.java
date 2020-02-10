@@ -1,4 +1,4 @@
-package com.example.postgresdemo.google;
+package hse.projectx.petdonate_api.google;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
