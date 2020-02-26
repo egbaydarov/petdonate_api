@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 public class DataState {
-    public String name = "Name", ID;
-    public int cur_HP = 30, cur_Mana = 30, cur_Stamina = 30;
-    public String type;
-    public int skin;
+    private String name = "Name", ID;
+    private int cur_HP = 30, cur_Mana = 30, cur_Stamina = 30;
+    private String type;
+    private int skin;
 
     public DataState(String name, String ID, int cur_HP, int cur_Mana, int cur_Stamina, String type, int skin) {
         this.name = name;

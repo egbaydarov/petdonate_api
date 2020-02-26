@@ -29,6 +29,12 @@ public class DataController {
         this.userRepository = userRepository;
     }
 
+    @GetMapping("test")
+    public String test()
+    {
+        return "HELLO";
+    }
+
     @GetMapping("/apiv1/data/{token}")
     public ResponseEntity<UserDataResponse> getUserData(@PathVariable String token) {
         User user;

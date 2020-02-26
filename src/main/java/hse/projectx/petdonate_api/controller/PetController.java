@@ -5,6 +5,7 @@ import hse.projectx.petdonate_api.google.GoogleAuthenticator;
 import hse.projectx.petdonate_api.model.Pet;
 import hse.projectx.petdonate_api.repository.PetRepository;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,12 +17,6 @@ import java.util.List;
 public class PetController {
 
     private PetRepository petRepository;
-
-    @GetMapping("test")
-    public String test()
-    {
-        return "HELLO";
-    }
 
     public PetController(PetRepository petRepository) {
         this.petRepository = petRepository;

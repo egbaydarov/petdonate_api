@@ -15,7 +15,6 @@ import javax.validation.constraints.*;
 public class Pet {
     @Id
     private String id;
-
     @Column(name = "name")
     private String name;
     @Column(name = "hp")

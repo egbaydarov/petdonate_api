@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface PetRepository extends JpaRepository<Pet, String> {
-
     @Query(value = "SELECT pet  from Pet pet where pet.userId=?1")
     List<Pet> getPetById(String petId);
 }
