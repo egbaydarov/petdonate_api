@@ -6,13 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class AnimalController {
     private AnimalRepository animalRepository;
 
-    public AnimalController(AnimalRepository animalRepository)
-    {
+    public AnimalController(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
     }
 
@@ -24,6 +24,10 @@ public class AnimalController {
 
     @GetMapping("/apiv1/animals/{shelterId}")
     public ResponseEntity getAnimalsFromShelter(@PathVariable String shelterId) {
-        return ResponseEntity.ok().body(animalRepository.GetAnimalByShelterId(shelterId));
+        List<Animal> res = animalRepository.GetAnimalByShelterId(shelterId);
+        if (res != null)
+            return ResponseEntity.ok().body(res);
+        else
+            return ResponseEntity.noContent().build();
     }
 }
