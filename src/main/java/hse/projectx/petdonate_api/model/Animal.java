@@ -23,6 +23,6 @@ public class Animal {
     @Column(name = "isBoy")
     Boolean isBoy;
     @Type(type = "hse.projectx.petdonate_api.utils.GenericArrayUserType")
-    @Column(name = "pictures",columnDefinition = "text[]")
+    @Column(name = "pictures", columnDefinition = "text[]")
     String[] pictures;
 }

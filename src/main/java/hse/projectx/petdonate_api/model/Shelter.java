@@ -25,9 +25,9 @@ public class Shelter {
     private String email;
     @Column(name = "phone_number")
     private String phone_number;
-    @Column(name = "pictures",columnDefinition = "text[]")
+    @Column(name = "pictures", columnDefinition = "text[]")
     @Type(type = "hse.projectx.petdonate_api.utils.GenericArrayUserType")
     private String[] pictures;
     @Column(name = "account")
-    private String  account;
+    private String account;
 }
