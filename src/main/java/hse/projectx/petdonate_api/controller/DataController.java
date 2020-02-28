@@ -128,14 +128,14 @@ public class DataController {
             if (!userRepository.existsById(payload.getSubject()))
                 throw new IOException("User Not Found");
             DataState state = request.getState();
-            petRepository.findById(state.getID())
+            petRepository.findById(payload.getSubject())
                     .map(pet ->
                     {
                         pet.setName(state.getName());
                         pet.setHappiness(state.getCur_Stamina());
                         pet.setFood(state.getCur_Mana());
                         pet.setHp(state.getCur_HP());
-                        pet.setUserId(user.getId());
+                        pet.setUserId(payload.getSubject());
                         pet.setColor(state.getSkin());
                         pet.setType(state.getType());
                         pet.setUserId(state.getID());
