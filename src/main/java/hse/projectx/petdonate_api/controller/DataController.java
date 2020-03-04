@@ -74,7 +74,7 @@ public class DataController {
             GoogleAuthenticator authenticator = new GoogleAuthenticator(token);
             GoogleIdToken.Payload payload = authenticator.getPayload();
             DataState state = request.getState();
-            if (payload != null && !userRepository.existsById(user.getId())) {
+            if (payload != null) {
                 user.setId(payload.getSubject());
                 user.setEmail(payload.getEmail());
                 user.setName((String) payload.get("name"));
