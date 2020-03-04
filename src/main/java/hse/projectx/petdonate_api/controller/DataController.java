@@ -82,7 +82,10 @@ public class DataController {
                 user.setLastVisit(LocalDateTime.now());
                 user.setPetID(payload.getSubject());
                 userRepository.save(user);
-            } else if (!petRepository.existsById(user.getId())) {
+            }
+            else
+                return new ResponseEntity<String>("OK", HttpStatus.MULTI_STATUS);
+            if (!petRepository.existsById(user.getId())) {
                 pet.setName(state.getName());
                 pet.setHappiness(state.getCur_Stamina());
                 pet.setFood(state.getCur_Mana());
@@ -120,7 +123,6 @@ public class DataController {
                         pet.setHappiness(state.getCur_Stamina());
                         pet.setFood(state.getCur_Mana());
                         pet.setHp(state.getCur_HP());
-                        pet.setUserId(payload.getSubject());
                         pet.setColor(state.getSkin());
                         pet.setType(state.getType());
                         return petRepository.save(pet);
@@ -134,7 +136,6 @@ public class DataController {
                         user1.setLastVisit(LocalDateTime.now());
                         return userRepository.save(user1);
                     }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
-
             return new ResponseEntity<>("KEK", HttpStatus.OK);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
