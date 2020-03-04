@@ -30,8 +30,7 @@ public class DataController {
     }
 
     @GetMapping("test")
-    public String test()
-    {
+    public String test() {
         return "HELLO";
     }
 
@@ -41,13 +40,11 @@ public class DataController {
         Pet pet;
         DataState state = new DataState();
         UserDataResponse response = null;
-        try
-        {
+        try {
             GoogleAuthenticator authenticator = new GoogleAuthenticator(token);
             GoogleIdToken.Payload payload = authenticator.getPayload();
 
-            if (payload != null)
-            {
+            if (payload != null) {
                 user = userRepository.getUserById(payload.getSubject()).get(0);
                 pet = petRepository.getPetById(user.getId()).get(0);
                 state.setCur_HP(pet.getHp());
@@ -58,12 +55,10 @@ public class DataController {
                 state.setSkin(pet.getColor());
                 state.setType(pet.getType());
                 response = new UserDataResponse(state, LocalDateTime.now());
-            }
-            else
+            } else
                 throw new IOException("Invalid Token!");
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (GeneralSecurityException | IOException | IndexOutOfBoundsException e)
-        {
+        } catch (GeneralSecurityException | IOException | IndexOutOfBoundsException e) {
             e.printStackTrace();
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -75,23 +70,19 @@ public class DataController {
                                                @Valid @RequestBody UserDataRequest request) {
         User user = new User();
         Pet pet = new Pet();
-        String petID = null;
-        try
-        {
+        try {
             GoogleAuthenticator authenticator = new GoogleAuthenticator(token);
             GoogleIdToken.Payload payload = authenticator.getPayload();
             DataState state = request.getState();
-            if (payload != null)
-            {
+            if (payload != null && !userRepository.existsById(user.getId())) {
                 user.setId(payload.getSubject());
                 user.setEmail(payload.getEmail());
                 user.setName((String) payload.get("name"));
                 user.setPicUrl((String) payload.get("picture"));
                 user.setLastVisit(LocalDateTime.now());
                 user.setPetID(payload.getSubject());
-            }
-            if (!userRepository.existsById(user.getId()))
-            {
+                userRepository.save(user);
+            } else if (!petRepository.existsById(user.getId())) {
                 pet.setName(state.getName());
                 pet.setHappiness(state.getCur_Stamina());
                 pet.setFood(state.getCur_Mana());
@@ -104,8 +95,7 @@ public class DataController {
             } else
                 return new ResponseEntity<String>("OK", HttpStatus.MULTI_STATUS);
             return new ResponseEntity<>("OK", HttpStatus.OK);
-        } catch (GeneralSecurityException | IOException e)
-        {
+        } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>("Exception on Server", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -116,8 +106,7 @@ public class DataController {
                                                @Valid @RequestBody UserDataRequest request, Integer a) {
         User user = new User();
         GoogleAuthenticator auth = null;
-        try
-        {
+        try {
             auth = new GoogleAuthenticator(token);
             GoogleIdToken.Payload payload = auth.getPayload();
 
@@ -134,7 +123,6 @@ public class DataController {
                         pet.setUserId(payload.getSubject());
                         pet.setColor(state.getSkin());
                         pet.setType(state.getType());
-                        pet.setUserId(state.getID());
                         return petRepository.save(pet);
                     }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
             userRepository.findById(payload.getSubject())
@@ -148,8 +136,7 @@ public class DataController {
                     }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
 
             return new ResponseEntity<>("KEK", HttpStatus.OK);
-        } catch (GeneralSecurityException | IOException e)
-        {
+        } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>("KEK", HttpStatus.HTTP_VERSION_NOT_SUPPORTED);
         }
