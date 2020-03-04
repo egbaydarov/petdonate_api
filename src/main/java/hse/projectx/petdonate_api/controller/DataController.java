@@ -53,7 +53,7 @@ public class DataController {
                 state.setCur_HP(pet.getHp());
                 state.setCur_Mana(pet.getFood());
                 state.setCur_Stamina(pet.getHappiness());
-                state.setID(pet.getId());
+                state.setID(user.getId());
                 state.setName(pet.getName());
                 state.setSkin(pet.getColor());
                 state.setType(pet.getType());
