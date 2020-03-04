@@ -100,7 +100,6 @@ public class DataController {
                 pet.setHp(state.getCur_HP());
                 pet.setType(state.getType());
                 pet.setId(user.getId());
-                petID = userRepository.save(user).getId();
                 petRepository.save(pet);
             } else
                 return new ResponseEntity<String>("OK", HttpStatus.MULTI_STATUS);
@@ -139,14 +138,13 @@ public class DataController {
                         return petRepository.save(pet);
                     }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
             userRepository.findById(payload.getSubject())
-                    .map(pet ->
+                    .map(user1 ->
                     {
-                        user.setId(payload.getSubject());
-                        user.setEmail(payload.getEmail());
-                        user.setName((String) payload.get("name"));
-                        user.setPicUrl((String) payload.get("picture"));
-                        user.setLastVisit(LocalDateTime.now());
-                        return userRepository.save(user);
+                        user1.setEmail(payload.getEmail());
+                        user1.setName((String) payload.get("name"));
+                        user1.setPicUrl((String) payload.get("picture"));
+                        user1.setLastVisit(LocalDateTime.now());
+                        return userRepository.save(user1);
                     }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
 
             return new ResponseEntity<>("KEK", HttpStatus.OK);
