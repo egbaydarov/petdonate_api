@@ -49,7 +49,7 @@ public class DataController {
             if (payload != null)
             {
                 user = userRepository.getUserById(payload.getSubject()).get(0);
-                pet = petRepository.getPetById(user.getPetID()).get(0);
+                pet = petRepository.getPetById(user.getId()).get(0);
                 state.setCur_HP(pet.getHp());
                 state.setCur_Mana(pet.getFood());
                 state.setCur_Stamina(pet.getHappiness());
@@ -62,12 +62,9 @@ public class DataController {
             else
                 throw new IOException("Invalid Token!");
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (GeneralSecurityException | IOException e)
+        } catch (GeneralSecurityException | IOException | IndexOutOfBoundsException e)
         {
             e.printStackTrace();
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (IndexOutOfBoundsException ex)
-        {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -149,7 +146,6 @@ public class DataController {
                         user.setName((String) payload.get("name"));
                         user.setPicUrl((String) payload.get("picture"));
                         user.setLastVisit(LocalDateTime.now());
-                        user.setPetID(state.getID());
                         return userRepository.save(user);
                     }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
 
