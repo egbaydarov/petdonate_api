@@ -46,7 +46,7 @@ public class DataController {
 
             if (payload != null) {
                 user = userRepository.getUserById(payload.getSubject()).get(0);
-                pet = petRepository.getPetById(user.getId()).get(0);
+                pet = petRepository.getPetById(payload.getSubject()).get(0);
                 state.setCur_HP(pet.getHp());
                 state.setCur_Mana(pet.getFood());
                 state.setCur_Stamina(pet.getHappiness());
