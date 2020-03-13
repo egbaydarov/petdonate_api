@@ -36,9 +36,9 @@ public class Shelter {
     @Column(name = "phone_number")
     private String phone_number;
 
-    @Column(name = "pictures", columnDefinition = "text[]")
-    @Type(type = "hse.projectx.petdonate_api.utils.GenericArrayUserType")
-    private String[] pictures;
+//    @Column(name = "pictures", columnDefinition = "text[]")
+//    @Type(type = "hse.projectx.petdonate_api.utils.GenericArrayUserType")
+//    private String[] pictures;
 
     @Size(min=3, max=20)
     @Column(name = "account")

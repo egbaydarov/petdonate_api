@@ -32,7 +32,7 @@ public class Animal {
     String behavior;
     @Column(name = "gender")
     String gender;
-    @Type(type = "hse.projectx.petdonate_api.utils.GenericArrayUserType")
-    @Column(name = "pictures", columnDefinition = "text[]")
-    String[] pictures;
+//    @Type(type = "hse.projectx.petdonate_api.utils.GenericArrayUserType")
+//    @Column(name = "pictures", columnDefinition = "text[]")
+//    String[] pictures;
 }

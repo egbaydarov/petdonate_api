@@ -55,6 +55,7 @@ public class AnimalController {
                                              @RequestParam("behavior") String behaviour,
                                              @RequestParam("name") String name,
                                              @RequestParam("appear") String appear,
+                                             @RequestParam("type") String type,
                                              @RequestParam("picture") MultipartFile picture) {
         if (picture.isEmpty()) {
             return ResponseEntity.badRequest().body("Empty file. Can't upload image");
@@ -65,6 +66,7 @@ public class AnimalController {
         animal.setAppear(appear);
         animal.setBehavior(behaviour);
         animal.setShelter_id(shelter_id);
+        animal.setType(type);
         Long id = animalRepository.save(animal).getId();
         try {
             // Get the file and save it somewhere
