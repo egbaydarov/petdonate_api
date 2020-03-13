@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ShelterRepository extends JpaRepository<Shelter, Long> {
     @Query(value = "SELECT shelter from Shelter shelter where shelter.id=?1")
-    List<Shelter> GetShelterById(String shelterID);
+    List<Shelter> GetShelterById(Long shelterID);
 
     @Query("select p.id from #{#entityName} p")
     List<String> getAllIds();

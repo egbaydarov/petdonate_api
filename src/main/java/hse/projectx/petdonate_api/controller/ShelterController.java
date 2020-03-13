@@ -54,7 +54,7 @@ public class ShelterController {
     }
 
     @GetMapping("apiv1/shelter/{id}/{token}")
-    public ResponseEntity getShelter(@PathVariable String id, @PathVariable String token) {
+    public ResponseEntity getShelter(@PathVariable Long id, @PathVariable String token) {
         Shelter res = null;
         GoogleAuthenticator authenticator = null;
         //            authenticator = new GoogleAuthenticator(token);
@@ -91,6 +91,7 @@ public class ShelterController {
             return ResponseEntity.badRequest().body("Empty file. Can't upload image");
         }
         Shelter shelter = new Shelter();
+        shelter.setPhone_number(number);
         shelter.setAccount(account);
         shelter.setEmail(email);
         shelter.setName(name);
