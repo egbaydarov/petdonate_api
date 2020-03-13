@@ -15,7 +15,7 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
     @Column(name = "shelter_id")
-    String shelter_id;
+    Long shelter_id;
     @Column(name = "type")
     String type;
 

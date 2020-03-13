@@ -50,7 +50,7 @@ public class AnimalController {
     }
 
     @PostMapping("/apiv1/animals")
-    public ResponseEntity addAnimalToShelter(@RequestParam("shelter_id") String shelter_id,
+    public ResponseEntity addAnimalToShelter(@RequestParam("shelter_id") Long shelter_id,
                                              @RequestParam("gender") String gender,
                                              @RequestParam("behavior") String behaviour,
                                              @RequestParam("name") String name,
@@ -80,7 +80,7 @@ public class AnimalController {
     }
 
     @GetMapping("/apiv1/animals/{shelterId}")
-    public ResponseEntity getAnimalsFromShelter(@PathVariable String shelterId) {
+    public ResponseEntity getAnimalsFromShelter(@PathVariable Long shelterId) {
         List<Animal> res = animalRepository.GetAnimalByShelterId(shelterId);
         if (res != null)
             return ResponseEntity.ok().body(res);
