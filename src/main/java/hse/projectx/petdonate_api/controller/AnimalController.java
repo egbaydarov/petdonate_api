@@ -75,6 +75,7 @@ public class AnimalController {
             Files.write(path, bytes);
         } catch (IOException e) {
             e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
 
         animalRepository.save(animal);
@@ -90,7 +91,7 @@ public class AnimalController {
             return ResponseEntity.noContent().build();
     }
     @DeleteMapping("/apiv1/animals/{animalId}")
-    public ResponseEntity deleteAnimal(@PathVariable String animalID)
+    public ResponseEntity deleteAnimal(@PathVariable Long animalID)
     {
         if(animalRepository.existsById(animalID))
         {

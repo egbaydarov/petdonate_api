@@ -110,7 +110,7 @@ public class ShelterController {
     }
 
     @DeleteMapping("/apiv1/shelters/{shelterId}")
-    public ResponseEntity deleteShelter(@PathVariable String shelterID)
+    public ResponseEntity deleteShelter(@PathVariable Long shelterID)
     {
         if(shelterRepository.existsById(shelterID))
         {
@@ -119,6 +119,7 @@ public class ShelterController {
                 Files.delete(path);
             } catch (IOException e) {
                 e.printStackTrace();
+                return ResponseEntity.badRequest().body(e.getMessage());
             }
             shelterRepository.deleteById(shelterID);
             return ResponseEntity.ok().body("animal: " + shelterID + " deleted");

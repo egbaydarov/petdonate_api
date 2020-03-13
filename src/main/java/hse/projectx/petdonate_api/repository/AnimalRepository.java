@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AnimalRepository extends JpaRepository<Animal, String> {
+public interface AnimalRepository extends JpaRepository<Animal, Long> {
     @Query(value = "SELECT animal from Animal animal where animal.shelter_id=?1")
     List<Animal> GetAnimalByShelterId(Long animalID);
 
