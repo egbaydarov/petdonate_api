@@ -109,8 +109,8 @@ public class ShelterController {
         return ResponseEntity.ok().body(id);
     }
 
-    @DeleteMapping("/apiv1/animals/{animalId}")
-    public ResponseEntity deleteAnimal(@PathVariable String shelterID)
+    @DeleteMapping("/apiv1/shelters/{shelterId}")
+    public ResponseEntity deleteShelter(@PathVariable String shelterID)
     {
         if(shelterRepository.existsById(shelterID))
         {
