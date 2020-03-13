@@ -14,14 +14,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 
 @RestController
 public class ShelterController {
@@ -79,18 +79,52 @@ public class ShelterController {
 
     @PostMapping("apiv1/shelters/{token}")
     public ResponseEntity postShelter(@PathVariable String token,
-                                      @Valid @RequestBody Shelter shelter) {
-        GoogleAuthenticator authenticator = null;
-//        try {
-//            authenticator = new GoogleAuthenticator(token);
-//            GoogleIdToken.Payload payload = authenticator.getPayload();
-//            if (payload == null)
-//                throw new ResourceNotFoundException("Bad TOKEN");
-        return ResponseEntity.ok().body(shelterRepository.save(shelter));
-//        } catch (GeneralSecurityException | IOException e) {
-//            e.printStackTrace();
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
+                                      @RequestParam("account") String account,
+                                      @RequestParam("phone_number") String number,
+                                      @RequestParam("email") String email,
+                                      @RequestParam("url") String url,
+                                      @RequestParam("location") String location,
+                                      @RequestParam("name") String name,
+                                      @RequestParam("picture") MultipartFile picture
+    ) {
+        if (picture.isEmpty()) {
+            return ResponseEntity.badRequest().body("Empty file. Can't upload image");
+        }
+        Shelter shelter = new Shelter();
+        shelter.setAccount(account);
+        shelter.setEmail(email);
+        shelter.setName(name);
+        shelter.setUrl(url);
+        shelter.setLocation(location);
+        Long id = shelterRepository.save(shelter).getId();
+        try {
+            // Get the file and save it somewhere
+            byte[] bytes = picture.getBytes();
+            Path path = Paths.get("target/classes/images/" + id + ".jpg" );
+            Files.write(path, bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.ok().body(id);
+    }
+
+    @DeleteMapping("/apiv1/animals/{animalId}")
+    public ResponseEntity deleteAnimal(@PathVariable String shelterID)
+    {
+        if(shelterRepository.existsById(shelterID))
+        {
+            try {
+                Path path = Paths.get("target/classes/images/" + shelterID + ".jpg" );
+                Files.delete(path);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            shelterRepository.deleteById(shelterID);
+            return ResponseEntity.ok().body("animal: " + shelterID + " deleted");
+        }
+        else
+            return ResponseEntity.notFound().build();
     }
 }
 

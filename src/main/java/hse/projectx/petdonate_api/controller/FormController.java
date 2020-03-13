@@ -12,8 +12,8 @@ import javax.validation.Valid;
 
 @RestController
 public class FormController {
-    private final AdoptFormRepository adoptFormRepository;
-    private final HelpFormRepository helpFormRepository;
+    private AdoptFormRepository adoptFormRepository;
+    private HelpFormRepository helpFormRepository;
 
     public FormController(AdoptFormRepository adoptFormRepository, HelpFormRepository helpFormRepository) {
         this.adoptFormRepository = adoptFormRepository;
@@ -32,19 +32,13 @@ public class FormController {
         return ResponseEntity.ok().body(form);
     }
 
-    @GetMapping("/apiv1/adopt/{id}")
-    public ResponseEntity getAdoptFormByID(@PathVariable Long id) {
-        if (adoptFormRepository.existsById(id))
-            return ResponseEntity.ok().body(adoptFormRepository.getOne(id));
-        else
-            return ResponseEntity.notFound().build();
+    @GetMapping("/apiv1/adopt/")
+    public ResponseEntity getAdoptFormByID() {
+        return ResponseEntity.ok().body(adoptFormRepository.findAll());
     }
 
-    @GetMapping("/apiv1/help/{id}")
-    public ResponseEntity getHelpFormByID(@PathVariable Long id) {
-        if (helpFormRepository.existsById(id))
-            return ResponseEntity.ok().body(helpFormRepository.getOne(id));
-        else
-            return ResponseEntity.notFound().build();
+    @GetMapping("/apiv1/help/")
+    public ResponseEntity getHelpFormByID() {
+        return ResponseEntity.ok().body(helpFormRepository.findAll());
     }
 }

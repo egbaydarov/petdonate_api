@@ -3,25 +3,35 @@ package hse.projectx.petdonate_api.model;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "animals")
 @Data
 public class Animal {
+
     @Id
-    String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    Long id;
     @Column(name = "shelter_id")
     String shelter_id;
     @Column(name = "type")
     String type;
+
+    @Size(min=2, max=12)
     @Column(name = "name")
     String name;
-    @Column(name = "isBoy")
-    Boolean isBoy;
+
+    @Size(min=3, max=256)
+    @Column(name = "appear")
+    String appear;
+
+    @Size(min=3, max=256)
+    @Column(name = "behavior")
+    String behavior;
+    @Column(name = "gender")
+    String gender;
     @Type(type = "hse.projectx.petdonate_api.utils.GenericArrayUserType")
     @Column(name = "pictures", columnDefinition = "text[]")
     String[] pictures;
