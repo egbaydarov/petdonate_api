@@ -111,19 +111,19 @@ public class ShelterController {
     }
 
     @DeleteMapping("/apiv1/shelters/{shelterId}")
-    public ResponseEntity deleteShelter(@PathVariable Long shelterID)
+    public ResponseEntity deleteShelter(@PathVariable Long shelterId)
     {
-        if(shelterRepository.existsById(shelterID))
+        if(shelterRepository.existsById(shelterId))
         {
             try {
-                Path path = Paths.get("target/classes/images/" + shelterID + ".jpg" );
+                Path path = Paths.get("target/classes/images/" + shelterId + ".jpg" );
                 Files.delete(path);
             } catch (IOException e) {
                 e.printStackTrace();
                 return ResponseEntity.badRequest().body(e.getMessage());
             }
-            shelterRepository.deleteById(shelterID);
-            return ResponseEntity.ok().body("animal: " + shelterID + " deleted");
+            shelterRepository.deleteById(shelterId);
+            return ResponseEntity.ok().body("animal: " + shelterId + " deleted");
         }
         else
             return ResponseEntity.notFound().build();

@@ -28,6 +28,7 @@ public class AnimalController {
     }
 
 
+
     @GetMapping("apiv1/animal/{id}/image/{token}")
     public ResponseEntity downloadImage(@PathVariable String id, @PathVariable String token) {
         GoogleAuthenticator authenticator = null;
@@ -48,7 +49,6 @@ public class AnimalController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
     @PostMapping("/apiv1/animals")
     public ResponseEntity addAnimalToShelter(@RequestParam("shelter_id") Long shelter_id,
                                              @RequestParam("gender") String gender,
@@ -57,6 +57,7 @@ public class AnimalController {
                                              @RequestParam("appear") String appear,
                                              @RequestParam("type") String type,
                                              @RequestParam("picture") MultipartFile picture) {
+
         if (picture.isEmpty()) {
             return ResponseEntity.badRequest().body("Empty file. Can't upload image");
         }
@@ -71,7 +72,7 @@ public class AnimalController {
         try {
             // Get the file and save it somewhere
             byte[] bytes = picture.getBytes();
-            Path path = Paths.get("target/classes/images/animals/" + id + ".jpg" );
+            Path path = Paths.get("animals/" + id + ".jpg" );
             Files.write(path, bytes);
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,7 +91,7 @@ public class AnimalController {
         else
             return ResponseEntity.noContent().build();
     }
-    @DeleteMapping("/apiv1/animals/{animalId}")
+    @DeleteMapping("/apiv1/animals/{animalID}")
     public ResponseEntity deleteAnimal(@PathVariable Long animalID)
     {
         if(animalRepository.existsById(animalID))
