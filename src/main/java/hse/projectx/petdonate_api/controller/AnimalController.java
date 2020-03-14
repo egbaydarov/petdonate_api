@@ -96,12 +96,13 @@ public class AnimalController {
     {
         if(animalRepository.existsById(animalID))
         {
-            try {
-                Path path = Paths.get("target/classes/images/animals/" + animalID + ".jpg" );
-                Files.delete(path);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            //TODO FIX SHIT
+//            try {
+//                Path path = Paths.get("target/classes/images/animals/" + animalID + ".jpg" );
+//                Files.delete(path);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             animalRepository.deleteById(animalID);
             return ResponseEntity.ok().body("animal: " + animalID + " deleted");
         }
