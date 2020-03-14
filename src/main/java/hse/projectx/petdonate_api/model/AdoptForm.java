@@ -15,9 +15,9 @@ public class AdoptForm
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "shelter_id")
-    private String shelter_id;
+    private Long shelter_id;
     @Column(name = "animal_id")
-    private String animal_id;
+    private Long animal_id;
 
     @Size(min=3, max=256)
     @Column(name = "name")

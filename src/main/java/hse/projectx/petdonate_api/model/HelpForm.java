@@ -16,7 +16,7 @@ public class HelpForm {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "shelter_id")
-    private String shelter_id;
+    private Long shelter_id;
 
     @Size(min=3, max=100)
     @Column(name = "name")
