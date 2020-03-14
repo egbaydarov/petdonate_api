@@ -72,7 +72,7 @@ public class AnimalController {
         try {
             // Get the file and save it somewhere
             byte[] bytes = picture.getBytes();
-            Path path = Paths.get("animals/" + id + ".jpg" );
+            Path path = Paths.get("target/classes/images/animals/" + id + ".jpg" );
             Files.write(path, bytes);
         } catch (IOException e) {
             e.printStackTrace();
