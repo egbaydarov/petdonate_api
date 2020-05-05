@@ -4,4 +4,4 @@
 
 API Docs
 ----
-  * **[Interact With Google Account and Virtual Pet](/docs/apiv1_data.md)**
+  * *[Interact with Google account and virtual pet](/docs/apiv1_data.md)*
