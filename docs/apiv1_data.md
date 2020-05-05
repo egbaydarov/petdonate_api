@@ -24,7 +24,8 @@
 
   * **Code:** 200 OK<br />
     **Content:**
-    ```{
+    ```json
+    {
       "state": {
           "name": "ррр",
           "cur_HP": -2,
@@ -34,7 +35,8 @@
           "skin": 2131165276,
           "id": "104383325999436478787"
        }
-    }```
+    }
+    ```
 * **Error Response:**
 
   * **Code:** 500 INTERNAL_SERVER_ERROR <br />
@@ -61,7 +63,8 @@
 * **Data Params**
 
   Body:
-  ```{
+  ```json
+    {
       "state": {
           "name": "ррр",
           "cur_HP": -2,
@@ -71,7 +74,8 @@
           "skin": 2131165276,
           "id": "104383325999436478787"
        }
-    }```
+    }
+    ```
 
 * **Success Response:**
 
@@ -105,7 +109,8 @@
 * **Data Params**
 
   Body:
-  ```{
+  ```json
+    {
       "state": {
           "name": "ррр",
           "cur_HP": -2,
@@ -115,7 +120,8 @@
           "skin": 2131165276,
           "id": "104383325999436478787"
        }
-    }```
+    }
+    ```
 
 * **Success Response:**
 
