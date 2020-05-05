@@ -65,7 +65,7 @@ public class ShelterController {
         return ResponseEntity.ok().body(res);
     }
 
-
+    @CrossOrigin(origins = "https://demopet.herokuapp.com")
     @GetMapping("apiv1/shelters/{token}")
     public ResponseEntity getShelters(@PathVariable String token) {
         Object[] shelters = null;
