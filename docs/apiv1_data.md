@@ -24,17 +24,17 @@
 
   * **Code:** 200 OK<br />
     **Content:**
-     ```{
-    "state": {
-        "name": "ррр",
-        "cur_HP": -2,
-        "cur_Mana": -2,
-        "cur_Stamina": -2,
-        "type": "Собака",
-        "skin": 2131165276,
-        "id": "104383325999436478787"
-    }
-  
+    ```{
+      "state": {
+          "name": "ррр",
+          "cur_HP": -2,
+          "cur_Mana": -2,
+          "cur_Stamina": -2,
+          "type": "Собака",
+          "skin": 2131165276,
+          "id": "104383325999436478787"
+       }
+    }```
 * **Error Response:**
 
   * **Code:** 500 INTERNAL_SERVER_ERROR <br />
@@ -62,16 +62,16 @@
 
   Body:
   ```{
-     "state": {
-         "name": "ррр",
-         "cur_HP": 58,
-         "cur_Mana": -2,
-         "cur_Stamina": 41,
-         "type": "Собака",
-         "skin": 2131165276,
-         "id": "104383325999436478787"
-     }
-   }
+      "state": {
+          "name": "ррр",
+          "cur_HP": -2,
+          "cur_Mana": -2,
+          "cur_Stamina": -2,
+          "type": "Собака",
+          "skin": 2131165276,
+          "id": "104383325999436478787"
+       }
+    }```
 
 * **Success Response:**
 
@@ -106,16 +106,16 @@
 
   Body:
   ```{
-     "state": {
-         "name": "ррр",
-         "cur_HP": 58,
-         "cur_Mana": -2,
-         "cur_Stamina": 41,
-         "type": "Собака",
-         "skin": 2131165276,
-         "id": "104383325999436478787"
-     }
-   }
+      "state": {
+          "name": "ррр",
+          "cur_HP": -2,
+          "cur_Mana": -2,
+          "cur_Stamina": -2,
+          "type": "Собака",
+          "skin": 2131165276,
+          "id": "104383325999436478787"
+       }
+    }```
 
 * **Success Response:**
 
