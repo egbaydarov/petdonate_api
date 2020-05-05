@@ -1,6 +1,6 @@
 # Pet Donate API
 
-**Server URL: ** `https://demopet.herokuapp.com`
+**Server URL:**  `https://demopet.herokuapp.com`
 
 API Docs
 ----
