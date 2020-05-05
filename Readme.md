@@ -1,34 +1,39 @@
-## Spring Boot, PostgreSQL, JPA, Hibernate REST API Demo
+**Get user Data**
+----
+  Returns json data about a single user.
 
-## Tutorial
+* **URL**
 
-Check out the complete tutorial on the CalliCoder blog -
+  /apiv1/data/{token}
 
-[Spring Boot, PostgreSQL, JPA, Hibernate RESTful CRUD API Example](https://www.callicoder.com/spring-boot-jpa-hibernate-postgresql-restful-crud-api-example/)
+* **Method:**
 
-## Steps to Setup
+  `GET`
+  
+*  **URL Params**
 
-**1. Clone the repository**
+   **Required: token which recieved from google auth API**
+ 
+   `token=String`
 
-```bash
-git clone https://github.com/callicoder/spring-boot-postgresql-jpa-hibernate-rest-api-demo.git
-```
+* **Data Params**
 
-**2. Configure PostgreSQL**
+  None
 
-First, create a database named `postgres_demo`. Then, open `src/main/resources/application.properties` file and change the spring datasource username and password as per your PostgreSQL installation.
+* **Success Response:**
 
-**3. Run the app**
+  * **Code:** 200 <br />
+    **Content:** `{}`
+ 
+* **Error Response:**
 
-Type the following command from the root directory of the project to run it -
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : }`
 
-```bash
-mvn spring-boot:run
-```
+  OR
 
-Alternatively, you can package the application in the form of a JAR file and then run it like so -
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : ""}`
 
-```bash
-mvn clean package
-java -jar target/postgres-demo-0.0.1-SNAPSHOT.jar
-```
+* **Sample Call:**
+
