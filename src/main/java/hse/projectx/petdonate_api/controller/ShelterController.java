@@ -65,16 +65,17 @@ public class ShelterController {
         return ResponseEntity.ok().body(res);
     }
 
+
     @GetMapping("apiv1/shelters/{token}")
     public ResponseEntity getShelters(@PathVariable String token) {
-        Object[] ids = null;
+        Object[] shelters = null;
         GoogleAuthenticator authenticator = null;
         //            authenticator = new GoogleAuthenticator(token);
 //            GoogleIdToken.Payload payload = authenticator.getPayload();
 //            if (payload == null)
 //                throw new ResourceNotFoundException("Bad TOKEN");
-        ids = shelterRepository.findAll().toArray();
-        return ResponseEntity.ok().body(ids);
+        shelters = shelterRepository.findAll().toArray();
+        return ResponseEntity.ok().body(shelters);
     }
 
     @PostMapping("apiv1/shelters/{token}")

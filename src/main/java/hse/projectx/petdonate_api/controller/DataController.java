@@ -82,32 +82,32 @@ public class DataController {
                 user.setLastVisit(LocalDateTime.now());
                 user.setPetID(payload.getSubject());
                 userRepository.save(user);
-            }
-            else
-                return new ResponseEntity<String>("OK", HttpStatus.MULTI_STATUS);
-            if (!petRepository.existsById(user.getId())) {
+
+                if (petRepository.existsById(user.getId())) {
+                    throw new IOException("User already registered!");
+                }
+
                 pet.setName(state.getName());
                 pet.setHappiness(state.getCur_Stamina());
+                pet.setHp(state.getCur_HP());
                 pet.setFood(state.getCur_Mana());
                 pet.setUserId(user.getId());
                 pet.setColor(state.getSkin());
-                pet.setHp(state.getCur_HP());
                 pet.setType(state.getType());
                 pet.setId(user.getId());
                 petRepository.save(pet);
             } else
-                return new ResponseEntity<String>("OK", HttpStatus.MULTI_STATUS);
+                return new ResponseEntity<String>("Google account not found", HttpStatus.MULTI_STATUS);
             return new ResponseEntity<>("OK", HttpStatus.OK);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
-            return new ResponseEntity<>("Exception on Server", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/apiv1/data/{token}")
     public ResponseEntity<String> postUserData(@PathVariable String token,
                                                @Valid @RequestBody UserDataRequest request, Integer a) {
-        User user = new User();
         GoogleAuthenticator auth = null;
         try {
             auth = new GoogleAuthenticator(token);
@@ -115,7 +115,9 @@ public class DataController {
 
             if (!userRepository.existsById(payload.getSubject()))
                 throw new IOException("User Not Found");
+
             DataState state = request.getState();
+
             petRepository.findById(payload.getSubject())
                     .map(pet ->
                     {
@@ -127,6 +129,7 @@ public class DataController {
                         pet.setType(state.getType());
                         return petRepository.save(pet);
                     }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
+
             userRepository.findById(payload.getSubject())
                     .map(user1 ->
                     {
@@ -135,11 +138,11 @@ public class DataController {
                         user1.setPicUrl((String) payload.get("picture"));
                         user1.setLastVisit(LocalDateTime.now());
                         return userRepository.save(user1);
-                    }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
-            return new ResponseEntity<>("KEK", HttpStatus.OK);
+                    }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + state.getID()));
+            return new ResponseEntity<>("Changes saved", HttpStatus.OK);
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
-            return new ResponseEntity<>("KEK", HttpStatus.HTTP_VERSION_NOT_SUPPORTED);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.HTTP_VERSION_NOT_SUPPORTED);
         }
     }
 }
