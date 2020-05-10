@@ -13,6 +13,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     @Query(value = "SELECT animal from Animal animal where animal.shelter_id=?1")
     List<Animal> GetAnimalByShelterId(Long animalID);
 
-    @Query("select p.id from #{#entityName} p")
-    List<String> getAllIds();
+    @Query("select p from #{#entityName} p")
+    List<Animal> getAllIds();
+    
 }

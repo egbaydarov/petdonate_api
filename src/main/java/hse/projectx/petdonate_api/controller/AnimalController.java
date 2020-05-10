@@ -93,6 +93,15 @@ public class AnimalController {
             return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/apiv1/animals/")
+    public ResponseEntity getAllAnimals() {
+        List<Animal> res = animalRepository.getAllIds();
+        if (res != null)
+            return ResponseEntity.ok().body(res);
+        else
+            return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/apiv1/animals/{animalID}")
     public ResponseEntity deleteAnimal(@PathVariable Long animalID)
     {
