@@ -17,6 +17,7 @@ public class Animal {
     @Column(name = "shelter_id")
     Long shelter_id;
     @Column(name = "type")
+            
     String type;
 
     @Size(min=2, max=12)

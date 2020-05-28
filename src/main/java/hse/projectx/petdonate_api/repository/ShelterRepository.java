@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ShelterRepository extends JpaRepository<Shelter, Long> {
+
     @Query(value = "SELECT shelter from Shelter shelter where shelter.id=?1")
     List<Shelter> GetShelterById(Long shelterID);
 

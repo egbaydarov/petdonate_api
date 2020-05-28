@@ -29,7 +29,7 @@ public class DataController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("test")
+    @GetMapping()
     public String test() {
         return "HELLO";
     }
@@ -106,8 +106,8 @@ public class DataController {
     }
 
     @PutMapping("/apiv1/data/{token}")
-    public ResponseEntity<String> postUserData(@PathVariable String token,
-                                               @Valid @RequestBody UserDataRequest request, Integer a) {
+    public ResponseEntity<String> putUserData(@PathVariable String token,
+                                               @Valid @RequestBody UserDataRequest request) {
         GoogleAuthenticator auth = null;
         try {
             auth = new GoogleAuthenticator(token);
