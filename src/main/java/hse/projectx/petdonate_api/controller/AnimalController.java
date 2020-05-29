@@ -57,7 +57,7 @@ public class AnimalController {
                                              @RequestParam("name") String name,
                                              @RequestParam("appear") String appear,
                                              @RequestParam("type") String type,
-                                             @RequestParam("picture") MultipartFile picture) {
+                                             @RequestParam("picture") String picture) {
 
         if (picture.isEmpty()) {
             return ResponseEntity.badRequest().body("Empty file. Can't upload image");
@@ -69,16 +69,7 @@ public class AnimalController {
         animal.setBehavior(behaviour);
         animal.setShelter_id(shelter_id);
         animal.setType(type);
-        Long id = animalRepository.save(animal).getId();
-        try {
-            // Get the file and save it somewhere
-            byte[] bytes = picture.getBytes();
-            Path path = Paths.get("target/classes/images/animals/" + id + ".jpg");
-            Files.write(path, bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        animal.setPicture(picture);
 
         animalRepository.save(animal);
         return ResponseEntity.ok().body(animal);
@@ -107,13 +98,6 @@ public class AnimalController {
     {
         if(animalRepository.existsById(animalID))
         {
-            //TODO FIX SHIT
-//            try {
-//                Path path = Paths.get("target/classes/images/animals/" + animalID + ".jpg" );
-//                Files.delete(path);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
             animalRepository.deleteById(animalID);
             return ResponseEntity.ok().body("animal: " + animalID + " deleted");
         }

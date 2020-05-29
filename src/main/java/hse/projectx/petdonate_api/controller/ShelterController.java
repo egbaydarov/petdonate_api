@@ -86,7 +86,7 @@ public class ShelterController {
                                       @RequestParam("url") String url,
                                       @RequestParam("location") String location,
                                       @RequestParam("name") String name,
-                                      @RequestParam("picture") MultipartFile picture
+                                      @RequestParam("picture") String picture
     ) {
         if (picture.isEmpty()) {
             return ResponseEntity.badRequest().body("Empty file. Can't upload image");
@@ -98,36 +98,18 @@ public class ShelterController {
         shelter.setName(name);
         shelter.setUrl(url);
         shelter.setLocation(location);
+        shelter.setPicture(picture);
         Long id = shelterRepository.save(shelter).getId();
-        try {
-            // Get the file and save it somewhere
-            byte[] bytes = picture.getBytes();
-            Path path = Paths.get("target/classes/images/" + id + ".jpg" );
-            Files.write(path, bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         return ResponseEntity.ok().body(id);
     }
 
     @DeleteMapping("/apiv1/shelters/{shelterId}")
-    public ResponseEntity deleteShelter(@PathVariable Long shelterId)
-    {
-        if(shelterRepository.existsById(shelterId))
-        {
-            //TODO FIX SHIT
-//            try {
-//                Path path = Paths.get("target/classes/images/" + shelterId + ".jpg" );
-//                Files.delete(path);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                return ResponseEntity.badRequest().body(e.getMessage());
-//            }
+    public ResponseEntity deleteShelter(@PathVariable Long shelterId) {
+        if (shelterRepository.existsById(shelterId)) {
             shelterRepository.deleteById(shelterId);
             return ResponseEntity.ok().body("animal: " + shelterId + " deleted");
-        }
-        else
+        } else
             return ResponseEntity.notFound().build();
     }
 }

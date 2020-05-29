@@ -43,4 +43,7 @@ public class Shelter {
     @Size(min=3, max=20)
     @Column(name = "account")
     private String account;
+
+    @Column(name = "picture")
+    private String picture;
 }
