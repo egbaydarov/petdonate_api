@@ -22,6 +22,6 @@ public class User {
     private LocalDateTime lastVisit;
     @Column(name = "petID")
     private String petID;
-    @Column(name = "transactions_count") //TODO IMPLEMENT CHANGING
+    @Column(name = "transactionsCount") //TODO IMPLEMENT CHANGING
     private Long transactionsCount;
 }
