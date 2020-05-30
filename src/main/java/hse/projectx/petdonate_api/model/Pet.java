@@ -29,4 +29,6 @@ public class Pet {
     private Integer color;
     @Column(name = "type")
     private String type;
+    @Column(name = "pts")
+    private Integer pts;
 }

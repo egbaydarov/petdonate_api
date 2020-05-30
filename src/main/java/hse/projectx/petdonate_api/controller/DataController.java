@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.time.LocalDateTime;
 
+//TODO DECOMPOSE
 @RestController
 public class DataController {
     private UserRepository userRepository;
@@ -54,6 +55,7 @@ public class DataController {
                 state.setName(pet.getName());
                 state.setSkin(pet.getColor());
                 state.setType(pet.getType());
+                state.setTransactions_count(user.getTransactionsCount());
                 response = new UserDataResponse(state, LocalDateTime.now());
             } else
                 throw new IOException("Invalid Token!");

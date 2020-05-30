@@ -88,9 +88,6 @@ public class ShelterController {
                                       @RequestParam("name") String name,
                                       @RequestParam("picture") String picture
     ) {
-        if (picture.isEmpty()) {
-            return ResponseEntity.badRequest().body("Empty file. Can't upload image");
-        }
         Shelter shelter = new Shelter();
         shelter.setPhone_number(number);
         shelter.setAccount(account);
@@ -108,7 +105,7 @@ public class ShelterController {
     public ResponseEntity deleteShelter(@PathVariable Long shelterId) {
         if (shelterRepository.existsById(shelterId)) {
             shelterRepository.deleteById(shelterId);
-            return ResponseEntity.ok().body("animal: " + shelterId + " deleted");
+            return ResponseEntity.ok().body("shelter: " + shelterId + " deleted");
         } else
             return ResponseEntity.notFound().build();
     }
