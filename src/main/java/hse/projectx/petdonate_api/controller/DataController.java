@@ -55,6 +55,7 @@ public class DataController {
                 state.setName(pet.getName());
                 state.setSkin(pet.getColor());
                 state.setType(pet.getType());
+                state.setPts(pet.getPts());
                 state.setTransactions_count(user.getTransactionsCount());
                 response = new UserDataResponse(state, LocalDateTime.now());
             } else
@@ -83,6 +84,7 @@ public class DataController {
                 user.setPicUrl((String) payload.get("picture"));
                 user.setLastVisit(LocalDateTime.now());
                 user.setPetID(payload.getSubject());
+                user.setTransactionsCount(0L);
                 userRepository.save(user);
 
                 if (petRepository.existsById(user.getId())) {
@@ -97,6 +99,7 @@ public class DataController {
                 pet.setColor(state.getSkin());
                 pet.setType(state.getType());
                 pet.setId(user.getId());
+                pet.setPts(100);
                 petRepository.save(pet);
             } else
                 return new ResponseEntity<String>("Google account not found", HttpStatus.MULTI_STATUS);
@@ -129,6 +132,7 @@ public class DataController {
                         pet.setHp(state.getCur_HP());
                         pet.setColor(state.getSkin());
                         pet.setType(state.getType());
+                        pet.setPts(state.getPts());
                         return petRepository.save(pet);
                     }).orElseThrow(() -> new ResourceNotFoundException("Pet not found with id " + state.getID()));
 
