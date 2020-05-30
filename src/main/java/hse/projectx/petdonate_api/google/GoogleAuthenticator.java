@@ -33,7 +33,7 @@ public class GoogleAuthenticator {
 
     private final NetHttpTransport transport = GoogleNetHttpTransport.newTrustedTransport();
     private final JacksonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-    private final String CLIENT_ID = "1083886473794-44l57r1gmhbk7vpo58jm4022eeue98mt.apps.googleusercontent.com";
+    private final String CLIENT_ID = "1010110510479-p2r12ubpf0e17gh4vjajvr95vmj98d63.apps.googleusercontent.com";
     private GoogleIdToken.Payload payload;
 
     private GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
