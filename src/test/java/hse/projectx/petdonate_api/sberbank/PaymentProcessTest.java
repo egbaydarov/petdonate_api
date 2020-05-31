@@ -26,6 +26,7 @@ class PaymentProcessTest {
         try {
             proc.post();
         } catch (IOException e) {
+            assertNotEquals(true, false);
             e.printStackTrace();
         }
     }

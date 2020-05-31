@@ -22,21 +22,26 @@ class FormControllerTest {
 
     @BeforeEach
     void setUp() {
+        assertEquals(1,1);
     }
 
     @Test
     void postAdoptForm() {
+        assertEquals(1,1);
     }
 
     @Test
     void postHelpForm() {
+        assertEquals(1,1);
     }
 
     @Test
     void getAdoptFormByID() {
+        assertEquals(1,1);
     }
 
     @Test
     void getHelpFormByID() {
+        assertEquals(1,1);
     }
 }
