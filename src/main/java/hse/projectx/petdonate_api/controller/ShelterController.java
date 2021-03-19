@@ -22,6 +22,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @RestController
 public class ShelterController {
@@ -67,14 +68,14 @@ public class ShelterController {
 
     @CrossOrigin(origins = "https://demopet.herokuapp.com")
     @GetMapping("apiv1/shelters/{token}")
-    public ResponseEntity getShelters(@PathVariable String token) {
-        Object[] shelters = null;
+    public ResponseEntity<List<Shelter>> getShelters(@PathVariable String token) {
+        List<Shelter> shelters = null;
         GoogleAuthenticator authenticator = null;
-        //            authenticator = new GoogleAuthenticator(token);
+//            authenticator = new GoogleAuthenticator(token);
 //            GoogleIdToken.Payload payload = authenticator.getPayload();
 //            if (payload == null)
 //                throw new ResourceNotFoundException("Bad TOKEN");
-        shelters = shelterRepository.findAll().toArray();
+        shelters = shelterRepository.findAll();
         return ResponseEntity.ok().body(shelters);
     }
 
